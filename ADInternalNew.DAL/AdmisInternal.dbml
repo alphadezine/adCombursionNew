@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Admis" Class="AdmisInternalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ALPHADEZ032\ALPHADEZ;Initial Catalog=Admis;Persist Security Info=True;User ID=sa" SettingsObjectName="ADInternalNew.DAL.Properties.Settings" SettingsPropertyName="AdmisConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account_Master" Member="Account_Masters">
+    <Type Name="Account_Master">
+      <Column Name="Account_Master_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Debit_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Credit_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="User_Account_Master" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_User_Mapping" Member="User_To_User_Mappings">
+    <Type Name="User_To_User_Mapping">
+      <Column Name="User_To_User_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Parent_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_User_To_User_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_User_To_User_Mapping1" Member="User1" ThisKey="Parent_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Address_Master" Member="Address_Masters">
+    <Type Name="Address_Master">
+      <Column Name="Address_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Address_Detail1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address_Detail2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="City_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Zip_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="State_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Country_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="City_Address_Master" Member="City" ThisKey="City_Id" OtherKey="City_Id" Type="City" IsForeignKey="true" />
+      <Association Name="Country_Address_Master" Member="Country" ThisKey="Country_Id" OtherKey="Country_Id" Type="Country" IsForeignKey="true" />
+      <Association Name="State_Address_Master" Member="State" ThisKey="State_Id" OtherKey="State_Id" Type="State" IsForeignKey="true" />
+      <Association Name="User_Address_Master" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Billing_Cycle" Member="Billing_Cycles">
+    <Type Name="Billing_Cycle">
+      <Column Name="Billing_Cycle_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Billing_Cycle_Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Billing_Cycle_User_Billing_Preference_Mapping" Member="User_Billing_Preference_Mappings" ThisKey="Billing_Cycle_Id" OtherKey="Billing_Cycle_Id" Type="User_Billing_Preference_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.City" Member="Cities">
+    <Type Name="City">
+      <Column Name="City_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="City_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="City_Address_Master" Member="Address_Masters" ThisKey="City_Id" OtherKey="City_Id" Type="Address_Master" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comp_Off_Master" Member="Comp_Off_Masters">
+    <Type Name="Comp_Off_Master">
+      <Column Name="Comp_Off_Master_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Login_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Duration" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Reason_Of_Comp_Off" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Login_Master_Comp_Off_Master" Member="Login_Master" ThisKey="Login_Id" OtherKey="Login_Id" Type="Login_Master" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Company" Member="Companies">
+    <Type Name="Company">
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="First_Contact_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Internal_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_Company" Member="User" ThisKey="Internal_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Country" Member="Countries">
+    <Type Name="Country">
+      <Column Name="Country_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Country_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Country_Address_Master" Member="Address_Masters" ThisKey="Country_Id" OtherKey="Country_Id" Type="Address_Master" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Currency" Member="Currencies">
+    <Type Name="Currency">
+      <Column Name="Currency_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Currency_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Currency_User_Currency_Preferenc_Mapping" Member="User_Currency_Preferenc_Mappings" ThisKey="Currency_Id" OtherKey="Currency_Id" Type="User_Currency_Preferenc_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Daily_Log_Status" Member="Daily_Log_Status">
+    <Type Name="Daily_Log_Status">
+      <Column Name="Daily_Log_Status_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Daily_Log_Status_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Daily_Log_Status_User_Daily_ToTimeStamp_Mapping" Member="User_Daily_ToTimeStamp_Mappings" ThisKey="Daily_Log_Status_Id" OtherKey="Daily_Log_Status_Id" Type="User_Daily_ToTimeStamp_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Discount" Member="Discounts">
+    <Type Name="Discount">
+      <Column Name="Discount_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Discount_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Discount_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Discount_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IsSpecialOffer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Discount_Invoice" Member="Invoices" ThisKey="Discount_Id" OtherKey="Discount_Id" Type="Invoice" />
+      <Association Name="Discount_Order_To_Discount_Mapping" Member="Order_To_Discount_Mappings" ThisKey="Discount_Id" OtherKey="Discount_Id" Type="Order_To_Discount_Mapping" />
+      <Association Name="Discount_Special_Offer" Member="Special_Offers" ThisKey="Discount_Id" OtherKey="Discount_Id" Type="Special_Offer" />
+      <Association Name="Discount_Type_Discount" Member="Discount_Type" ThisKey="Discount_Type_Id" OtherKey="Discount_Type_Id" Type="Discount_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Discount_Type" Member="Discount_Types">
+    <Type Name="Discount_Type">
+      <Column Name="Discount_Type_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Discount_Type_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Discount_Type_Discount" Member="Discounts" ThisKey="Discount_Type_Id" OtherKey="Discount_Type_Id" Type="Discount" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Feedback" Member="Feedbacks">
+    <Type Name="Feedback">
+      <Column Name="Feedback_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Feedback_Note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Feedback_Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Feedback_For_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Feedback_Giver_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_Detail_Feedback" Member="Order_Detail" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+      <Association Name="User_Feedback" Member="User" ThisKey="Feedback_For_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Feedback1" Member="User1" ThisKey="Feedback_Giver_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.File_Master" Member="File_Masters">
+    <Type Name="File_Master">
+      <Column Name="File_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="File_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="File_Url" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="File_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="File_Size" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="File_Upload_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="File_Master_Instruction_To_File_Mapping" Member="Instruction_To_File_Mappings" ThisKey="File_Id" OtherKey="File_Id" Type="Instruction_To_File_Mapping" />
+      <Association Name="File_Master_Order_Detail_To_File_Mapping" Member="Order_Detail_To_File_Mappings" ThisKey="File_Id" OtherKey="File_Id" Type="Order_Detail_To_File_Mapping" />
+      <Association Name="File_Master_Order_Type_To_File_Mapping" Member="Order_Type_To_File_Mappings" ThisKey="File_Id" OtherKey="File_Id" Type="Order_Type_To_File_Mapping" />
+      <Association Name="File_Master_Payment_To_File_Mapping" Member="Payment_To_File_Mappings" ThisKey="File_Id" OtherKey="File_Id" Type="Payment_To_File_Mapping" />
+      <Association Name="File_Master_Revision_To_File_Mapping" Member="Revision_To_File_Mappings" ThisKey="File_Id" OtherKey="File_Id" Type="Revision_To_File_Mapping" />
+      <Association Name="File_Master_Tag" Member="Tags" ThisKey="File_Id" OtherKey="File_Id" Type="Tag" />
+      <Association Name="File_Type_File_Master" Member="File_Type" ThisKey="File_Type_Id" OtherKey="File_Type_Id" Type="File_Type" IsForeignKey="true" />
+      <Association Name="File_Upload_Type_File_Master" Member="File_Upload_Type" ThisKey="File_Upload_Type_Id" OtherKey="File_Upload_Type_Id" Type="File_Upload_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.File_Type" Member="File_Types">
+    <Type Name="File_Type">
+      <Column Name="File_Type_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="File_Type_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="File_Type_File_Master" Member="File_Masters" ThisKey="File_Type_Id" OtherKey="File_Type_Id" Type="File_Master" />
+      <Association Name="File_Type_User_FileType_Preference_Mapping" Member="User_FileType_Preference_Mappings" ThisKey="File_Type_Id" OtherKey="File_Type_Id" Type="User_FileType_Preference_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.File_Upload_Type" Member="File_Upload_Types">
+    <Type Name="File_Upload_Type">
+      <Column Name="File_Upload_Type_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="File_Upload_Type_Value" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="File_Upload_Type_File_Master" Member="File_Masters" ThisKey="File_Upload_Type_Id" OtherKey="File_Upload_Type_Id" Type="File_Master" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Functionality" Member="Functionalities">
+    <Type Name="Functionality">
+      <Column Name="Functionality_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Functionality_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Functionality_Role_To_Functionality_Mapping" Member="Role_To_Functionality_Mappings" ThisKey="Functionality_Id" OtherKey="Functionality_Id" Type="Role_To_Functionality_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Idle_Master" Member="Idle_Masters">
+    <Type Name="Idle_Master">
+      <Column Name="Idle_Master_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Login_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Duration" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Login_Master_Idle_Master" Member="Login_Master" ThisKey="Login_Id" OtherKey="Login_Id" Type="Login_Master" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Instruction" Member="Instructions">
+    <Type Name="Instruction">
+      <Column Name="Instruction_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Instruction_Value" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Instruction_Instruction_To_File_Mapping" Member="Instruction_To_File_Mappings" ThisKey="Instruction_Id" OtherKey="Instruction_Id" Type="Instruction_To_File_Mapping" />
+      <Association Name="Instruction_Order_To_Instruction_Mapping" Member="Order_To_Instruction_Mappings" ThisKey="Instruction_Id" OtherKey="Instruction_Id" Type="Order_To_Instruction_Mapping" />
+      <Association Name="Instruction_Revision_To_Instruction_Mapping" Member="Revision_To_Instruction_Mappings" ThisKey="Instruction_Id" OtherKey="Instruction_Id" Type="Revision_To_Instruction_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Instruction_To_File_Mapping" Member="Instruction_To_File_Mappings">
+    <Type Name="Instruction_To_File_Mapping">
+      <Column Name="Instruction_To_File_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Instruction_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="File_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="File_Master_Instruction_To_File_Mapping" Member="File_Master" ThisKey="File_Id" OtherKey="File_Id" Type="File_Master" IsForeignKey="true" />
+      <Association Name="Instruction_Instruction_To_File_Mapping" Member="Instruction" ThisKey="Instruction_Id" OtherKey="Instruction_Id" Type="Instruction" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Invoice" Member="Invoices">
+    <Type Name="Invoice">
+      <Column Name="Invoice_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Original_Order_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Discount_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Final_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Invoice_Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TimeStamp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Invoice_Payment_To_Invoice_Mapping" Member="Payment_To_Invoice_Mappings" ThisKey="Invoice_Id" OtherKey="Invoice_Id" Type="Payment_To_Invoice_Mapping" />
+      <Association Name="Discount_Invoice" Member="Discount" ThisKey="Discount_Id" OtherKey="Discount_Id" Type="Discount" IsForeignKey="true" />
+      <Association Name="Order_Detail_Invoice" Member="Order_Detail" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+      <Association Name="Time_Stamp_Invoice" Member="Time_Stamp" ThisKey="TimeStamp_Id" OtherKey="Time_Stamp_Id" Type="Time_Stamp" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Level]" Member="Levels">
+    <Type Name="Level">
+      <Column Name="Level_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Level_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Level_Level_To_Skill_Mapping" Member="Level_To_Skill_Mappings" ThisKey="Level_Id" OtherKey="Level_Id" Type="Level_To_Skill_Mapping" />
+      <Association Name="Level_Order_Type" Member="Order_Types" ThisKey="Level_Id" OtherKey="Level_Id" Type="Order_Type" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Level_To_Skill_Mapping" Member="Level_To_Skill_Mappings">
+    <Type Name="Level_To_Skill_Mapping">
+      <Column Name="Level_To_Skill_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Level_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Skill_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Level_To_Skill_Mapping_User_To_Level_Mapping" Member="User_To_Level_Mappings" ThisKey="Level_To_Skill_Mapping_Id" OtherKey="Level_To_Skill_Id" Type="User_To_Level_Mapping" />
+      <Association Name="Level_Level_To_Skill_Mapping" Member="Level" ThisKey="Level_Id" OtherKey="Level_Id" Type="Level" IsForeignKey="true" />
+      <Association Name="Skill_Level_To_Skill_Mapping" Member="Skill" ThisKey="Skill_Id" OtherKey="Skill_Id" Type="Skill" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Login_Master" Member="Login_Masters">
+    <Type Name="Login_Master">
+      <Column Name="Login_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_To_Shift_Mapping_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Current_Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Login_Master_Comp_Off_Master" Member="Comp_Off_Masters" ThisKey="Login_Id" OtherKey="Login_Id" Type="Comp_Off_Master" />
+      <Association Name="Login_Master_Idle_Master" Member="Idle_Masters" ThisKey="Login_Id" OtherKey="Login_Id" Type="Idle_Master" />
+      <Association Name="Login_Master_User_Daily_ToTimeStamp_Mapping" Member="User_Daily_ToTimeStamp_Mappings" ThisKey="Login_Id" OtherKey="Login_Id" Type="User_Daily_ToTimeStamp_Mapping" />
+      <Association Name="User_To_Shift_Mapping_Login_Master" Member="User_To_Shift_Mapping" ThisKey="User_To_Shift_Mapping_Id" OtherKey="User_To_Shift_Mapping_Id" Type="User_To_Shift_Mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Options_Master" Member="Options_Masters">
+    <Type Name="Options_Master">
+      <Column Name="Options_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Option_Value" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Questionnaire_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Options_Master_User_Input_To_Option_Mapping" Member="User_Input_To_Option_Mappings" ThisKey="Options_Id" OtherKey="Options_Id" Type="User_Input_To_Option_Mapping" />
+      <Association Name="Questionnaire_Master_Options_Master" Member="Questionnaire_Master" ThisKey="Questionnaire_Id" OtherKey="Questionnaire_Id" Type="Questionnaire_Master" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Detail" Member="Order_Details">
+    <Type Name="Order_Detail">
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Client_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Priority" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Order_Budget" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PO_Number_Needed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsNewOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsRevised" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order_Status_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDiscountApplied" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Order_Detail_Feedback" Member="Feedbacks" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Feedback" />
+      <Association Name="Order_Detail_Invoice" Member="Invoices" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Invoice" />
+      <Association Name="Order_Detail_Order_To_Discount_Mapping" Member="Order_To_Discount_Mappings" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_To_Discount_Mapping" />
+      <Association Name="Order_Detail_Order_To_Order" Member="Order_To_Orders" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_To_Order" />
+      <Association Name="Order_Detail_Order_To_Order1" Member="Order_To_Orders1" ThisKey="Order_Detail_Id" OtherKey="Parent_Order_Detail_Id" Type="Order_To_Order" />
+      <Association Name="Order_Detail_Order_To_Reminder_Mapping" Member="Order_To_Reminder_Mappings" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_To_Reminder_Mapping" />
+      <Association Name="Order_Detail_Order_To_User_Mapping" Member="Order_To_User_Mappings" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_To_User_Mapping" />
+      <Association Name="Order_Detail_PO_To_Order_Mapping" Member="PO_To_Order_Mappings" ThisKey="Order_Detail_Id" OtherKey="order_detail_id" Type="PO_To_Order_Mapping" />
+      <Association Name="Order_Detail_Tag_To_Order_Mapping" Member="Tag_To_Order_Mappings" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Tag_To_Order_Mapping" />
+      <Association Name="Order_Detail_User_Input_to_Order_mapping" Member="User_Input_to_Order_mappings" ThisKey="Order_Detail_Id" OtherKey="order_detail_id" Type="User_Input_to_Order_mapping" />
+      <Association Name="Order_Status_Order_Detail" Member="Order_Status" ThisKey="Order_Status_Id" OtherKey="Order_Status_Id" Type="Order_Status" IsForeignKey="true" />
+      <Association Name="Order_Type_Order_Detail" Member="Order_Type" ThisKey="Order_Type_Id" OtherKey="Order_Type_Id" Type="Order_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Detail_To_File_Mapping" Member="Order_Detail_To_File_Mappings">
+    <Type Name="Order_Detail_To_File_Mapping">
+      <Column Name="Order_Detail_To_File_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_To_User_Mapping_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="File_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="File_Master_Order_Detail_To_File_Mapping" Member="File_Master" ThisKey="File_Id" OtherKey="File_Id" Type="File_Master" IsForeignKey="true" />
+      <Association Name="Order_To_User_Mapping_Order_Detail_To_File_Mapping" Member="Order_To_User_Mapping" ThisKey="Order_To_User_Mapping_Id" OtherKey="Order_To_User_Mapping_Id" Type="Order_To_User_Mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Quote_Master" Member="Order_Quote_Masters">
+    <Type Name="Order_Quote_Master">
+      <Column Name="Order_Quote_Master_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_To_User_Mapping_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Original_Order_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Additional_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Order_To_User_Mapping_Order_Quote_Master" Member="Order_To_User_Mapping" ThisKey="Order_To_User_Mapping_Id" OtherKey="Order_To_User_Mapping_Id" Type="Order_To_User_Mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Status" Member="Order_Status">
+    <Type Name="Order_Status">
+      <Column Name="Order_Status_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Status_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Order_Status_Order_Detail" Member="Order_Details" ThisKey="Order_Status_Id" OtherKey="Order_Status_Id" Type="Order_Detail" />
+      <Association Name="Order_Status_Order_Status_Questionnaire_Mapping" Member="Order_Status_Questionnaire_Mappings" ThisKey="Order_Status_Id" OtherKey="Order_Status_Id" Type="Order_Status_Questionnaire_Mapping" />
+      <Association Name="Order_Status_Order_To_User_Mapping" Member="Order_To_User_Mappings" ThisKey="Order_Status_Id" OtherKey="Order_Status_Id" Type="Order_To_User_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Status_Questionnaire_Mapping" Member="Order_Status_Questionnaire_Mappings">
+    <Type Name="Order_Status_Questionnaire_Mapping">
+      <Column Name="Order_Status_Questionnaire_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Status_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Questionnaire_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_Status_Order_Status_Questionnaire_Mapping" Member="Order_Status" ThisKey="Order_Status_Id" OtherKey="Order_Status_Id" Type="Order_Status" IsForeignKey="true" />
+      <Association Name="Questionnaire_Master_Order_Status_Questionnaire_Mapping" Member="Questionnaire_Master" ThisKey="Questionnaire_Id" OtherKey="Questionnaire_Id" Type="Questionnaire_Master" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_To_Discount_Mapping" Member="Order_To_Discount_Mappings">
+    <Type Name="Order_To_Discount_Mapping">
+      <Column Name="Order_To_Discount_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Discount_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Discount_Order_To_Discount_Mapping" Member="Discount" ThisKey="Discount_Id" OtherKey="Discount_Id" Type="Discount" IsForeignKey="true" />
+      <Association Name="Order_Detail_Order_To_Discount_Mapping" Member="Order_Detail" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_To_Instruction_Mapping" Member="Order_To_Instruction_Mappings">
+    <Type Name="Order_To_Instruction_Mapping">
+      <Column Name="Order_To_Instruction_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_To_User_Mapping_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Instruction_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Instruction_Order_To_Instruction_Mapping" Member="Instruction" ThisKey="Instruction_Id" OtherKey="Instruction_Id" Type="Instruction" IsForeignKey="true" />
+      <Association Name="Order_To_User_Mapping_Order_To_Instruction_Mapping" Member="Order_To_User_Mapping" ThisKey="Order_To_User_Mapping_Id" OtherKey="Order_To_User_Mapping_Id" Type="Order_To_User_Mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_To_Order" Member="Order_To_Orders">
+    <Type Name="Order_To_Order">
+      <Column Name="Order_To_Order_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Parent_Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_Detail_Order_To_Order" Member="Order_Detail" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+      <Association Name="Order_Detail_Order_To_Order1" Member="Order_Detail1" ThisKey="Parent_Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_To_Reminder_Mapping" Member="Order_To_Reminder_Mappings">
+    <Type Name="Order_To_Reminder_Mapping">
+      <Column Name="Order_To_Reminder_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Reminder_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_Detail_Order_To_Reminder_Mapping" Member="Order_Detail" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+      <Association Name="Reminder_Order_To_Reminder_Mapping" Member="Reminder" ThisKey="Reminder_Id" OtherKey="Reminder_Id" Type="Reminder" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_To_User_Mapping" Member="Order_To_User_Mappings">
+    <Type Name="Order_To_User_Mapping">
+      <Column Name="Order_To_User_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order_Status_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Time_Stamp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_To_User_Mapping_Order_Detail_To_File_Mapping" Member="Order_Detail_To_File_Mappings" ThisKey="Order_To_User_Mapping_Id" OtherKey="Order_To_User_Mapping_Id" Type="Order_Detail_To_File_Mapping" />
+      <Association Name="Order_To_User_Mapping_Order_Quote_Master" Member="Order_Quote_Masters" ThisKey="Order_To_User_Mapping_Id" OtherKey="Order_To_User_Mapping_Id" Type="Order_Quote_Master" />
+      <Association Name="Order_To_User_Mapping_Order_To_Instruction_Mapping" Member="Order_To_Instruction_Mappings" ThisKey="Order_To_User_Mapping_Id" OtherKey="Order_To_User_Mapping_Id" Type="Order_To_Instruction_Mapping" />
+      <Association Name="Order_Detail_Order_To_User_Mapping" Member="Order_Detail" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+      <Association Name="Order_Status_Order_To_User_Mapping" Member="Order_Status" ThisKey="Order_Status_Id" OtherKey="Order_Status_Id" Type="Order_Status" IsForeignKey="true" />
+      <Association Name="Time_Stamp_Order_To_User_Mapping" Member="Time_Stamp" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Time_Stamp" IsForeignKey="true" />
+      <Association Name="User_Order_To_User_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Type" Member="Order_Types">
+    <Type Name="Order_Type">
+      <Column Name="Order_Type_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Type_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Level_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_Type_Order_Detail" Member="Order_Details" ThisKey="Order_Type_Id" OtherKey="Order_Type_Id" Type="Order_Detail" />
+      <Association Name="Order_Type_Order_Type_To_File_Mapping" Member="Order_Type_To_File_Mappings" ThisKey="Order_Type_Id" OtherKey="Order_Type_Id" Type="Order_Type_To_File_Mapping" />
+      <Association Name="Level_Order_Type" Member="Level" ThisKey="Level_Id" OtherKey="Level_Id" Type="Level" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Type_To_File_Mapping" Member="Order_Type_To_File_Mappings">
+    <Type Name="Order_Type_To_File_Mapping">
+      <Column Name="Order_Type_To_File_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="File_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="File_Master_Order_Type_To_File_Mapping" Member="File_Master" ThisKey="File_Id" OtherKey="File_Id" Type="File_Master" IsForeignKey="true" />
+      <Association Name="Order_Type_Order_Type_To_File_Mapping" Member="Order_Type" ThisKey="Order_Type_Id" OtherKey="Order_Type_Id" Type="Order_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="Payment_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Payment_Mode_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Payment_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Payer_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Receiver_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Payment_Payment_To_File_Mapping" Member="Payment_To_File_Mappings" ThisKey="Payment_Id" OtherKey="Payment_Id" Type="Payment_To_File_Mapping" />
+      <Association Name="Payment_Payment_To_Invoice_Mapping" Member="Payment_To_Invoice_Mappings" ThisKey="Payment_Id" OtherKey="Payment_Id" Type="Payment_To_Invoice_Mapping" />
+      <Association Name="Payment_Mode_Payment" Member="Payment_Mode" ThisKey="Payment_Mode_Id" OtherKey="Payment_Mode_Id" Type="Payment_Mode" IsForeignKey="true" />
+      <Association Name="Payment_Type_Payment" Member="Payment_Type" ThisKey="Payment_Type_Id" OtherKey="Payment_Type_Id" Type="Payment_Type" IsForeignKey="true" />
+      <Association Name="User_Payment" Member="User" ThisKey="Payer_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Payment1" Member="User1" ThisKey="Receiver_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment_Mode" Member="Payment_Modes">
+    <Type Name="Payment_Mode">
+      <Column Name="Payment_Mode_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Payment_Mode_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Payment_Mode_Payment" Member="Payments" ThisKey="Payment_Mode_Id" OtherKey="Payment_Mode_Id" Type="Payment" />
+      <Association Name="Payment_Mode_User_Payment_Preference_Mapping" Member="User_Payment_Preference_Mappings" ThisKey="Payment_Mode_Id" OtherKey="Payment_Mode_Id" Type="User_Payment_Preference_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment_To_File_Mapping" Member="Payment_To_File_Mappings">
+    <Type Name="Payment_To_File_Mapping">
+      <Column Name="Payment_To_File_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Payment_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="File_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="File_Master_Payment_To_File_Mapping" Member="File_Master" ThisKey="File_Id" OtherKey="File_Id" Type="File_Master" IsForeignKey="true" />
+      <Association Name="Payment_Payment_To_File_Mapping" Member="Payment" ThisKey="Payment_Id" OtherKey="Payment_Id" Type="Payment" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment_To_Invoice_Mapping" Member="Payment_To_Invoice_Mappings">
+    <Type Name="Payment_To_Invoice_Mapping">
+      <Column Name="Payment_To_Invoice_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Payment_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Invoice_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pending_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Invoice_Payment_To_Invoice_Mapping" Member="Invoice" ThisKey="Invoice_Id" OtherKey="Invoice_Id" Type="Invoice" IsForeignKey="true" />
+      <Association Name="Payment_Payment_To_Invoice_Mapping" Member="Payment" ThisKey="Payment_Id" OtherKey="Payment_Id" Type="Payment" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment_Type" Member="Payment_Types">
+    <Type Name="Payment_Type">
+      <Column Name="Payment_Type_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Payment_Type_Value" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Payment_Type_Payment" Member="Payments" ThisKey="Payment_Type_Id" OtherKey="Payment_Type_Id" Type="Payment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Phone_Number_Master" Member="Phone_Number_Masters">
+    <Type Name="Phone_Number_Master">
+      <Column Name="Phone_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Phone_Number" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Country_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Phone_Ext" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Phone_Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Phone_Number_Master_User_To_Phone_Mapping" Member="User_To_Phone_Mappings" ThisKey="Phone_Id" OtherKey="Phone_Id" Type="User_To_Phone_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PO_To_Order_Mapping" Member="PO_To_Order_Mappings">
+    <Type Name="PO_To_Order_Mapping">
+      <Column Name="PO_to_order_mapping_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="order_detail_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="po_number" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Order_Detail_PO_To_Order_Mapping" Member="Order_Detail" ThisKey="order_detail_id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Preference" Member="Preferences">
+    <Type Name="Preference">
+      <Column Name="Preference_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Preference_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Preference_User_To_Preference" Member="User_To_Preferences" ThisKey="Preference_Id" OtherKey="Preference_Id" Type="User_To_Preference" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Questionnaire_Master" Member="Questionnaire_Masters">
+    <Type Name="Questionnaire_Master">
+      <Column Name="Questionnaire_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Questionnaire_Value" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Questionnaire_Master_Options_Master" Member="Options_Masters" ThisKey="Questionnaire_Id" OtherKey="Questionnaire_Id" Type="Options_Master" />
+      <Association Name="Questionnaire_Master_Order_Status_Questionnaire_Mapping" Member="Order_Status_Questionnaire_Mappings" ThisKey="Questionnaire_Id" OtherKey="Questionnaire_Id" Type="Order_Status_Questionnaire_Mapping" />
+      <Association Name="Questionnaire_Master_User_Status_To_Questionnaire_Mapping" Member="User_Status_To_Questionnaire_Mappings" ThisKey="Questionnaire_Id" OtherKey="Questionnaire_Id" Type="User_Status_To_Questionnaire_Mapping" />
+      <Association Name="Questionnaire_Master_User_To_Input_mapping" Member="User_To_Input_mappings" ThisKey="Questionnaire_Id" OtherKey="questionnaire_id" Type="User_To_Input_mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reminder" Member="Reminders">
+    <Type Name="Reminder">
+      <Column Name="Reminder_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Time_Stamp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Reminder_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Reminder_Order_To_Reminder_Mapping" Member="Order_To_Reminder_Mappings" ThisKey="Reminder_Id" OtherKey="Reminder_Id" Type="Order_To_Reminder_Mapping" />
+      <Association Name="Reminder_User_To_Reminder" Member="User_To_Reminders" ThisKey="Reminder_Id" OtherKey="Reminder_Id" Type="User_To_Reminder" />
+      <Association Name="Reminder_Type_Reminder" Member="Reminder_Type" ThisKey="Reminder_Type_Id" OtherKey="Reminder_Type_Id" Type="Reminder_Type" IsForeignKey="true" />
+      <Association Name="Time_Stamp_Reminder" Member="Time_Stamp" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Time_Stamp" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reminder_Type" Member="Reminder_Types">
+    <Type Name="Reminder_Type">
+      <Column Name="Reminder_Type_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Reminder_Message" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Reminder_Type_Reminder" Member="Reminders" ThisKey="Reminder_Type_Id" OtherKey="Reminder_Type_Id" Type="Reminder" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Revision" Member="Revisions">
+    <Type Name="Revision">
+      <Column Name="Revision_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Order_To_User_Mapping_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Revision_Revision_To_File_Mapping" Member="Revision_To_File_Mappings" ThisKey="Revision_Id" OtherKey="Revision_Id" Type="Revision_To_File_Mapping" />
+      <Association Name="Revision_Revision_To_Instruction_Mapping" Member="Revision_To_Instruction_Mappings" ThisKey="Revision_Id" OtherKey="Revision_Id" Type="Revision_To_Instruction_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Revision_To_File_Mapping" Member="Revision_To_File_Mappings">
+    <Type Name="Revision_To_File_Mapping">
+      <Column Name="Revision_To_File_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Revision_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="File_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="File_Master_Revision_To_File_Mapping" Member="File_Master" ThisKey="File_Id" OtherKey="File_Id" Type="File_Master" IsForeignKey="true" />
+      <Association Name="Revision_Revision_To_File_Mapping" Member="Revision" ThisKey="Revision_Id" OtherKey="Revision_Id" Type="Revision" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Revision_To_Instruction_Mapping" Member="Revision_To_Instruction_Mappings">
+    <Type Name="Revision_To_Instruction_Mapping">
+      <Column Name="Revision_To_Instruction_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Revision_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Instruction_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Instruction_Revision_To_Instruction_Mapping" Member="Instruction" ThisKey="Instruction_Id" OtherKey="Instruction_Id" Type="Instruction" IsForeignKey="true" />
+      <Association Name="Revision_Revision_To_Instruction_Mapping" Member="Revision" ThisKey="Revision_Id" OtherKey="Revision_Id" Type="Revision" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role" Member="Roles">
+    <Type Name="Role">
+      <Column Name="Role_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Role_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Role_Role_To_Functionality_Mapping" Member="Role_To_Functionality_Mappings" ThisKey="Role_Id" OtherKey="Role_Id" Type="Role_To_Functionality_Mapping" />
+      <Association Name="Role_User_To_Role_Mapping" Member="User_To_Role_Mappings" ThisKey="Role_Id" OtherKey="Role_Id" Type="User_To_Role_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role_To_Functionality_Mapping" Member="Role_To_Functionality_Mappings">
+    <Type Name="Role_To_Functionality_Mapping">
+      <Column Name="Role_To_Functionality_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Role_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Functionality_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Functionality_Role_To_Functionality_Mapping" Member="Functionality" ThisKey="Functionality_Id" OtherKey="Functionality_Id" Type="Functionality" IsForeignKey="true" />
+      <Association Name="Role_Role_To_Functionality_Mapping" Member="Role" ThisKey="Role_Id" OtherKey="Role_Id" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shift" Member="Shifts">
+    <Type Name="Shift">
+      <Column Name="Shift_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Shift_Time_Hr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Shift_Time_Min" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Shift_User_To_Shift_Mapping" Member="User_To_Shift_Mappings" ThisKey="Shift_Id" OtherKey="Shift_Start_Time" Type="User_To_Shift_Mapping" />
+      <Association Name="Shift_User_To_Shift_Mapping1" Member="User_To_Shift_Mappings1" ThisKey="Shift_Id" OtherKey="Shift_End_Time" Type="User_To_Shift_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shift_Log" Member="Shift_Logs">
+    <Type Name="Shift_Log">
+      <Column Name="Shift_Log_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_To_Shift_Mapping_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="End_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_To_Shift_Mapping_Shift_Log" Member="User_To_Shift_Mapping" ThisKey="User_To_Shift_Mapping_Id" OtherKey="User_To_Shift_Mapping_Id" Type="User_To_Shift_Mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Skill" Member="Skills">
+    <Type Name="Skill">
+      <Column Name="Skill_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Skill_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Skill_Level_To_Skill_Mapping" Member="Level_To_Skill_Mappings" ThisKey="Skill_Id" OtherKey="Skill_Id" Type="Level_To_Skill_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Special_Offer" Member="Special_Offers">
+    <Type Name="Special_Offer">
+      <Column Name="Special_Offer_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Start_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="End_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Discount_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Special_Offer_Template_To_Special_Offer_Mapping" Member="Template_To_Special_Offer_Mappings" ThisKey="Special_Offer_Id" OtherKey="Special_Offer_Id" Type="Template_To_Special_Offer_Mapping" />
+      <Association Name="Discount_Special_Offer" Member="Discount" ThisKey="Discount_Id" OtherKey="Discount_Id" Type="Discount" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.State" Member="States">
+    <Type Name="State">
+      <Column Name="State_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="State_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="State_Address_Master" Member="Address_Masters" ThisKey="State_Id" OtherKey="State_Id" Type="Address_Master" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tag" Member="Tags">
+    <Type Name="Tag">
+      <Column Name="Tags_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tag_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="File_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsOrderConnected" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Time_Stamp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tag_Tag_To_Order_Mapping" Member="Tag_To_Order_Mappings" ThisKey="Tags_Id" OtherKey="Tags_Id" Type="Tag_To_Order_Mapping" />
+      <Association Name="File_Master_Tag" Member="File_Master" ThisKey="File_Id" OtherKey="File_Id" Type="File_Master" IsForeignKey="true" />
+      <Association Name="Time_Stamp_Tag" Member="Time_Stamp" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Time_Stamp" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tag_To_Order_Mapping" Member="Tag_To_Order_Mappings">
+    <Type Name="Tag_To_Order_Mapping">
+      <Column Name="Tag_To_Order_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tags_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order_Detail_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_Detail_Tag_To_Order_Mapping" Member="Order_Detail" ThisKey="Order_Detail_Id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+      <Association Name="Tag_Tag_To_Order_Mapping" Member="Tag" ThisKey="Tags_Id" OtherKey="Tags_Id" Type="Tag" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Template" Member="Templates">
+    <Type Name="Template">
+      <Column Name="Template_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Template_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Template_Template_To_Special_Offer_Mapping" Member="Template_To_Special_Offer_Mappings" ThisKey="Template_Id" OtherKey="Template_Id" Type="Template_To_Special_Offer_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Template_To_Special_Offer_Mapping" Member="Template_To_Special_Offer_Mappings">
+    <Type Name="Template_To_Special_Offer_Mapping">
+      <Column Name="Template_To_Special_Offer_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Template_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Special_Offer_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Special_Offer_Template_To_Special_Offer_Mapping" Member="Special_Offer" ThisKey="Special_Offer_Id" OtherKey="Special_Offer_Id" Type="Special_Offer" IsForeignKey="true" />
+      <Association Name="Template_Template_To_Special_Offer_Mapping" Member="Template" ThisKey="Template_Id" OtherKey="Template_Id" Type="Template" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Time_Stamp" Member="Time_Stamps">
+    <Type Name="Time_Stamp">
+      <Column Name="Time_Stamp_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Time_Stamp_Value" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Time_Stamp_Invoice" Member="Invoices" ThisKey="Time_Stamp_Id" OtherKey="TimeStamp_Id" Type="Invoice" />
+      <Association Name="Time_Stamp_Order_To_User_Mapping" Member="Order_To_User_Mappings" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Order_To_User_Mapping" />
+      <Association Name="Time_Stamp_Reminder" Member="Reminders" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Reminder" />
+      <Association Name="Time_Stamp_Tag" Member="Tags" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Tag" />
+      <Association Name="Time_Stamp_User_Daily_ToTimeStamp_Mapping" Member="User_Daily_ToTimeStamp_Mappings" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="User_Daily_ToTimeStamp_Mapping" />
+      <Association Name="Time_Stamp_User_Status_Time_Stamp_Mapping" Member="User_Status_Time_Stamp_Mappings" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="User_Status_Time_Stamp_Mapping" />
+      <Association Name="Time_Stamp_User_To_Input_mapping" Member="User_To_Input_mappings" ThisKey="Time_Stamp_Id" OtherKey="timestamp_id" Type="User_To_Input_mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="First_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email_Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="User_Status_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_Account_Master" Member="Account_Masters" ThisKey="User_Id" OtherKey="User_Id" Type="Account_Master" />
+      <Association Name="User_User_To_User_Mapping" Member="User_To_User_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_User_Mapping" />
+      <Association Name="User_User_To_User_Mapping1" Member="User_To_User_Mappings1" ThisKey="User_Id" OtherKey="Parent_User_Id" Type="User_To_User_Mapping" />
+      <Association Name="User_Address_Master" Member="Address_Masters" ThisKey="User_Id" OtherKey="User_Id" Type="Address_Master" />
+      <Association Name="User_Company" Member="Companies" ThisKey="User_Id" OtherKey="Internal_User_Id" Type="Company" />
+      <Association Name="User_Feedback" Member="Feedbacks" ThisKey="User_Id" OtherKey="Feedback_For_User_Id" Type="Feedback" />
+      <Association Name="User_Feedback1" Member="Feedbacks1" ThisKey="User_Id" OtherKey="Feedback_Giver_User_Id" Type="Feedback" />
+      <Association Name="User_Order_To_User_Mapping" Member="Order_To_User_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="Order_To_User_Mapping" />
+      <Association Name="User_Payment" Member="Payments" ThisKey="User_Id" OtherKey="Payer_User_Id" Type="Payment" />
+      <Association Name="User_Payment1" Member="Payments1" ThisKey="User_Id" OtherKey="Receiver_User_Id" Type="Payment" />
+      <Association Name="User_User_Input_To_User_Mapping" Member="User_Input_To_User_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="User_Input_To_User_Mapping" />
+      <Association Name="User_User_Status_Time_Stamp_Mapping" Member="User_Status_Time_Stamp_Mappings" ThisKey="User_Id" OtherKey="User_Id_By" Type="User_Status_Time_Stamp_Mapping" />
+      <Association Name="User_User_Status_Time_Stamp_Mapping1" Member="User_Status_Time_Stamp_Mappings1" ThisKey="User_Id" OtherKey="User_Id_Of" Type="User_Status_Time_Stamp_Mapping" />
+      <Association Name="User_User_To_Input_mapping" Member="User_To_Input_mappings" ThisKey="User_Id" OtherKey="user_id" Type="User_To_Input_mapping" />
+      <Association Name="User_User_To_Level_Mapping" Member="User_To_Level_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_Level_Mapping" />
+      <Association Name="User_User_To_Phone_Mapping" Member="User_To_Phone_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_Phone_Mapping" />
+      <Association Name="User_User_To_Preference" Member="User_To_Preferences" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_Preference" />
+      <Association Name="User_User_To_Reminder" Member="User_To_Reminders" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_Reminder" />
+      <Association Name="User_User_To_Role_Mapping" Member="User_To_Role_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_Role_Mapping" />
+      <Association Name="User_User_To_Shift_Mapping" Member="User_To_Shift_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_Shift_Mapping" />
+      <Association Name="User_User_To_Special_Offer_Mapping" Member="User_To_Special_Offer_Mappings" ThisKey="User_Id" OtherKey="User_Id" Type="User_To_Special_Offer_Mapping" />
+      <Association Name="User_Status_User" Member="User_Status" ThisKey="User_Status_Id" OtherKey="User_Status_Id" Type="User_Status" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Billing_Preference_Mapping" Member="User_Billing_Preference_Mappings">
+    <Type Name="User_Billing_Preference_Mapping">
+      <Column Name="User_Billing_Preference_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_To_Preference_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Billing_Cycle_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Billing_Cycle_User_Billing_Preference_Mapping" Member="Billing_Cycle" ThisKey="Billing_Cycle_Id" OtherKey="Billing_Cycle_Id" Type="Billing_Cycle" IsForeignKey="true" />
+      <Association Name="User_To_Preference_User_Billing_Preference_Mapping" Member="User_To_Preference" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_To_Preference" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Currency_Preferenc_Mapping" Member="User_Currency_Preferenc_Mappings">
+    <Type Name="User_Currency_Preferenc_Mapping">
+      <Column Name="User_Currency_Preferenc_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_To_Preference_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Currency_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Currency_User_Currency_Preferenc_Mapping" Member="Currency" ThisKey="Currency_Id" OtherKey="Currency_Id" Type="Currency" IsForeignKey="true" />
+      <Association Name="User_To_Preference_User_Currency_Preferenc_Mapping" Member="User_To_Preference" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_To_Preference" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Daily_ToTimeStamp_Mapping" Member="User_Daily_ToTimeStamp_Mappings">
+    <Type Name="User_Daily_ToTimeStamp_Mapping">
+      <Column Name="User_Daily_ToTimeStamp_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Login_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Time_Stamp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Daily_Log_Status_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Daily_Log_Status_User_Daily_ToTimeStamp_Mapping" Member="Daily_Log_Status" ThisKey="Daily_Log_Status_Id" OtherKey="Daily_Log_Status_Id" Type="Daily_Log_Status" IsForeignKey="true" />
+      <Association Name="Login_Master_User_Daily_ToTimeStamp_Mapping" Member="Login_Master" ThisKey="Login_Id" OtherKey="Login_Id" Type="Login_Master" IsForeignKey="true" />
+      <Association Name="Time_Stamp_User_Daily_ToTimeStamp_Mapping" Member="Time_Stamp" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Time_Stamp" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_FileType_Preference_Mapping" Member="User_FileType_Preference_Mappings">
+    <Type Name="User_FileType_Preference_Mapping">
+      <Column Name="User_FileType_Preferenc_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_To_Preference_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="File_Type_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="File_Type_User_FileType_Preference_Mapping" Member="File_Type" ThisKey="File_Type_Id" OtherKey="File_Type_Id" Type="File_Type" IsForeignKey="true" />
+      <Association Name="User_To_Preference_User_FileType_Preference_Mapping" Member="User_To_Preference" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_To_Preference" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Input_To_Option_Mapping" Member="User_Input_To_Option_Mappings">
+    <Type Name="User_Input_To_Option_Mapping">
+      <Column Name="User_Input_To_Option_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_to_input_mapping_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Options_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Options_Master_User_Input_To_Option_Mapping" Member="Options_Master" ThisKey="Options_Id" OtherKey="Options_Id" Type="Options_Master" IsForeignKey="true" />
+      <Association Name="User_To_Input_mapping_User_Input_To_Option_Mapping" Member="User_To_Input_mapping" ThisKey="user_to_input_mapping_id" OtherKey="user_to_input_mapping_id" Type="User_To_Input_mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Input_to_Order_mapping" Member="User_Input_to_Order_mappings">
+    <Type Name="User_Input_to_Order_mapping">
+      <Column Name="user_input_to_order_mapping_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_to_input_mapping_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_detail_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_Detail_User_Input_to_Order_mapping" Member="Order_Detail" ThisKey="order_detail_id" OtherKey="Order_Detail_Id" Type="Order_Detail" IsForeignKey="true" />
+      <Association Name="User_To_Input_mapping_User_Input_to_Order_mapping" Member="User_To_Input_mapping" ThisKey="user_to_input_mapping_id" OtherKey="user_to_input_mapping_id" Type="User_To_Input_mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Input_To_User_Mapping" Member="User_Input_To_User_Mappings">
+    <Type Name="User_Input_To_User_Mapping">
+      <Column Name="User_Input_To_User_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_to_input_mapping_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_User_Input_To_User_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_To_Input_mapping_User_Input_To_User_Mapping" Member="User_To_Input_mapping" ThisKey="user_to_input_mapping_id" OtherKey="user_to_input_mapping_id" Type="User_To_Input_mapping" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Payment_Preference_Mapping" Member="User_Payment_Preference_Mappings">
+    <Type Name="User_Payment_Preference_Mapping">
+      <Column Name="User_Payment_Preferenc_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_To_Preference_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Payment_Mode_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Payment_Mode_User_Payment_Preference_Mapping" Member="Payment_Mode" ThisKey="Payment_Mode_Id" OtherKey="Payment_Mode_Id" Type="Payment_Mode" IsForeignKey="true" />
+      <Association Name="User_To_Preference_User_Payment_Preference_Mapping" Member="User_To_Preference" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_To_Preference" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Status" Member="User_Status">
+    <Type Name="User_Status">
+      <Column Name="User_Status_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Status_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="User_Status_User" Member="Users" ThisKey="User_Status_Id" OtherKey="User_Status_Id" Type="User" />
+      <Association Name="User_Status_User_Status_Time_Stamp_Mapping" Member="User_Status_Time_Stamp_Mappings" ThisKey="User_Status_Id" OtherKey="User_Status_Id" Type="User_Status_Time_Stamp_Mapping" />
+      <Association Name="User_Status_User_Status_To_Questionnaire_Mapping" Member="User_Status_To_Questionnaire_Mappings" ThisKey="User_Status_Id" OtherKey="User_Status_Id" Type="User_Status_To_Questionnaire_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Status_Time_Stamp_Mapping" Member="User_Status_Time_Stamp_Mappings">
+    <Type Name="User_Status_Time_Stamp_Mapping">
+      <Column Name="User_Status_Time_Stamp_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id_By" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Id_Of" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Status_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Time_Stamp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Time_Stamp_User_Status_Time_Stamp_Mapping" Member="Time_Stamp" ThisKey="Time_Stamp_Id" OtherKey="Time_Stamp_Id" Type="Time_Stamp" IsForeignKey="true" />
+      <Association Name="User_User_Status_Time_Stamp_Mapping" Member="User" ThisKey="User_Id_By" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Status_User_Status_Time_Stamp_Mapping" Member="User_Status" ThisKey="User_Status_Id" OtherKey="User_Status_Id" Type="User_Status" IsForeignKey="true" />
+      <Association Name="User_User_Status_Time_Stamp_Mapping1" Member="User1" ThisKey="User_Id_Of" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Status_To_Questionnaire_Mapping" Member="User_Status_To_Questionnaire_Mappings">
+    <Type Name="User_Status_To_Questionnaire_Mapping">
+      <Column Name="User_Status_To_Questionnaire_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Status_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Questionnaire_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Questionnaire_Master_User_Status_To_Questionnaire_Mapping" Member="Questionnaire_Master" ThisKey="Questionnaire_Id" OtherKey="Questionnaire_Id" Type="Questionnaire_Master" IsForeignKey="true" />
+      <Association Name="User_Status_User_Status_To_Questionnaire_Mapping" Member="User_Status" ThisKey="User_Status_Id" OtherKey="User_Status_Id" Type="User_Status" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Input_mapping" Member="User_To_Input_mappings">
+    <Type Name="User_To_Input_mapping">
+      <Column Name="user_to_input_mapping_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="questionnaire_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="timestamp_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_To_Input_mapping_User_Input_To_Option_Mapping" Member="User_Input_To_Option_Mappings" ThisKey="user_to_input_mapping_id" OtherKey="user_to_input_mapping_id" Type="User_Input_To_Option_Mapping" />
+      <Association Name="User_To_Input_mapping_User_Input_to_Order_mapping" Member="User_Input_to_Order_mappings" ThisKey="user_to_input_mapping_id" OtherKey="user_to_input_mapping_id" Type="User_Input_to_Order_mapping" />
+      <Association Name="User_To_Input_mapping_User_Input_To_User_Mapping" Member="User_Input_To_User_Mappings" ThisKey="user_to_input_mapping_id" OtherKey="user_to_input_mapping_id" Type="User_Input_To_User_Mapping" />
+      <Association Name="Questionnaire_Master_User_To_Input_mapping" Member="Questionnaire_Master" ThisKey="questionnaire_id" OtherKey="Questionnaire_Id" Type="Questionnaire_Master" IsForeignKey="true" />
+      <Association Name="Time_Stamp_User_To_Input_mapping" Member="Time_Stamp" ThisKey="timestamp_id" OtherKey="Time_Stamp_Id" Type="Time_Stamp" IsForeignKey="true" />
+      <Association Name="User_User_To_Input_mapping" Member="User" ThisKey="user_id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Level_Mapping" Member="User_To_Level_Mappings">
+    <Type Name="User_To_Level_Mapping">
+      <Column Name="User_To_Level_Mapping_iD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Level_To_Skill_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Skill_Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Level_To_Skill_Mapping_User_To_Level_Mapping" Member="Level_To_Skill_Mapping" ThisKey="Level_To_Skill_Id" OtherKey="Level_To_Skill_Mapping_Id" Type="Level_To_Skill_Mapping" IsForeignKey="true" />
+      <Association Name="User_User_To_Level_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Phone_Mapping" Member="User_To_Phone_Mappings">
+    <Type Name="User_To_Phone_Mapping">
+      <Column Name="User_To_Phone_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Phone_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Phone_Number_Master_User_To_Phone_Mapping" Member="Phone_Number_Master" ThisKey="Phone_Id" OtherKey="Phone_Id" Type="Phone_Number_Master" IsForeignKey="true" />
+      <Association Name="User_User_To_Phone_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Preference" Member="User_To_Preferences">
+    <Type Name="User_To_Preference">
+      <Column Name="User_To_Preference_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Preference_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bool_value" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="User_To_Preference_User_Billing_Preference_Mapping" Member="User_Billing_Preference_Mappings" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_Billing_Preference_Mapping" />
+      <Association Name="User_To_Preference_User_Currency_Preferenc_Mapping" Member="User_Currency_Preferenc_Mappings" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_Currency_Preferenc_Mapping" />
+      <Association Name="User_To_Preference_User_FileType_Preference_Mapping" Member="User_FileType_Preference_Mappings" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_FileType_Preference_Mapping" />
+      <Association Name="User_To_Preference_User_Payment_Preference_Mapping" Member="User_Payment_Preference_Mappings" ThisKey="User_To_Preference_Id" OtherKey="User_To_Preference_Id" Type="User_Payment_Preference_Mapping" />
+      <Association Name="Preference_User_To_Preference" Member="Preference" ThisKey="Preference_Id" OtherKey="Preference_Id" Type="Preference" IsForeignKey="true" />
+      <Association Name="User_User_To_Preference" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Reminder" Member="User_To_Reminders">
+    <Type Name="User_To_Reminder">
+      <Column Name="User_Reminder_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Reminder_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Reminder_User_To_Reminder" Member="Reminder" ThisKey="Reminder_Id" OtherKey="Reminder_Id" Type="Reminder" IsForeignKey="true" />
+      <Association Name="User_User_To_Reminder" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Role_Mapping" Member="User_To_Role_Mappings">
+    <Type Name="User_To_Role_Mapping">
+      <Column Name="User_To_Role_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Role_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Role_User_To_Role_Mapping" Member="Role" ThisKey="Role_Id" OtherKey="Role_Id" Type="Role" IsForeignKey="true" />
+      <Association Name="User_User_To_Role_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Shift_Mapping" Member="User_To_Shift_Mappings">
+    <Type Name="User_To_Shift_Mapping">
+      <Column Name="User_To_Shift_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Shift_Start_Time" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Shift_End_Time" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Start_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Current_Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_To_Shift_Mapping_Login_Master" Member="Login_Masters" ThisKey="User_To_Shift_Mapping_Id" OtherKey="User_To_Shift_Mapping_Id" Type="Login_Master" />
+      <Association Name="User_To_Shift_Mapping_Shift_Log" Member="Shift_Logs" ThisKey="User_To_Shift_Mapping_Id" OtherKey="User_To_Shift_Mapping_Id" Type="Shift_Log" />
+      <Association Name="Shift_User_To_Shift_Mapping" Member="Shift" ThisKey="Shift_Start_Time" OtherKey="Shift_Id" Type="Shift" IsForeignKey="true" />
+      <Association Name="Shift_User_To_Shift_Mapping1" Member="Shift1" ThisKey="Shift_End_Time" OtherKey="Shift_Id" Type="Shift" IsForeignKey="true" />
+      <Association Name="User_User_To_Shift_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_To_Special_Offer_Mapping" Member="User_To_Special_Offer_Mappings">
+    <Type Name="User_To_Special_Offer_Mapping">
+      <Column Name="User_To_Special_Offer_Mapping_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Special_Offer_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Coupon_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="User_User_To_Special_Offer_Mapping" Member="User" ThisKey="User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1DA5F921-55F4-4DFC-A953-D5C4815E6B69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ADInternalNew.Core</RootNamespace>
+    <AssemblyName>ADInternalNew.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Data\Tbl_Account_Master.cs" />
+    <Compile Include="Data\Tbl_Address_Master.cs" />
+    <Compile Include="Data\Tbl_Billing_Cycle.cs" />
+    <Compile Include="Data\Tbl_City.cs" />
+    <Compile Include="Data\Tbl_Company.cs" />
+    <Compile Include="Data\Tbl_Comp_Off_Master.cs" />
+    <Compile Include="Data\Tbl_Country.cs" />
+    <Compile Include="Data\Tbl_Currency.cs" />
+    <Compile Include="Data\Tbl_Daily_Log_Status.cs" />
+    <Compile Include="Data\Tbl_Discount.cs" />
+    <Compile Include="Data\Tbl_Discount_Type.cs" />
+    <Compile Include="Data\Tbl_Feedback.cs" />
+    <Compile Include="Data\Tbl_File_Master.cs" />
+    <Compile Include="Data\Tbl_File_Type.cs" />
+    <Compile Include="Data\Tbl_File_Upload_Type.cs" />
+    <Compile Include="Data\Tbl_Functionality.cs" />
+    <Compile Include="Data\Tbl_Idle_Master.cs" />
+    <Compile Include="Data\Tbl_Instruction.cs" />
+    <Compile Include="Data\Tbl_Instruction_To_File_Mapping.cs" />
+    <Compile Include="Data\Tbl_Invoice.cs" />
+    <Compile Include="Data\Tbl_Level.cs" />
+    <Compile Include="Data\Tbl_Level_To_Skill_Mapping.cs" />
+    <Compile Include="Data\Tbl_Login_Master.cs" />
+    <Compile Include="Data\Tbl_Options_Master.cs" />
+    <Compile Include="Data\Tbl_Order_Detail.cs" />
+    <Compile Include="Data\Tbl_Order_Detail_To_File_Mapping.cs" />
+    <Compile Include="Data\Tbl_Order_Quote_Master.cs" />
+    <Compile Include="Data\Tbl_Order_Status.cs" />
+    <Compile Include="Data\Tbl_Order_Status_Questionnaire_Mapping.cs" />
+    <Compile Include="Data\Tbl_Order_To_Discount_Mapping.cs" />
+    <Compile Include="Data\Tbl_Order_To_Instruction_Mapping.cs" />
+    <Compile Include="Data\Tbl_Order_To_Order.cs" />
+    <Compile Include="Data\Tbl_Order_To_Reminder_Mapping.cs" />
+    <Compile Include="Data\Tbl_Order_To_User_Mapping.cs" />
+    <Compile Include="Data\Tbl_Order_Type.cs" />
+    <Compile Include="Data\Tbl_Order_Type_To_File_Mapping.cs" />
+    <Compile Include="Data\Tbl_Payment.cs" />
+    <Compile Include="Data\Tbl_Payment_Mode.cs" />
+    <Compile Include="Data\Tbl_Payment_To_File_Mapping.cs" />
+    <Compile Include="Data\Tbl_Payment_To_Invoice_Mapping.cs" />
+    <Compile Include="Data\Tbl_Payment_Type.cs" />
+    <Compile Include="Data\Tbl_Phone_Number_Master.cs" />
+    <Compile Include="Data\Tbl_PO_To_Order_Mapping.cs" />
+    <Compile Include="Data\Tbl_Preference.cs" />
+    <Compile Include="Data\Tbl_Questionnaire_Master.cs" />
+    <Compile Include="Data\Tbl_Reminder.cs" />
+    <Compile Include="Data\Tbl_Reminder_Type.cs" />
+    <Compile Include="Data\Tbl_Revision.cs" />
+    <Compile Include="Data\Tbl_Revision_To_File_Mapping.cs" />
+    <Compile Include="Data\Tbl_Revision_To_Instruction_Mapping.cs" />
+    <Compile Include="Data\Tbl_Role.cs" />
+    <Compile Include="Data\Tbl_Role_To_Functionality_Mapping.cs" />
+    <Compile Include="Data\Tbl_Shift.cs" />
+    <Compile Include="Data\Tbl_Shift_Log.cs" />
+    <Compile Include="Data\Tbl_Skill.cs" />
+    <Compile Include="Data\Tbl_Special_Offer.cs" />
+    <Compile Include="Data\Tbl_State.cs" />
+    <Compile Include="Data\Tbl_Tag.cs" />
+    <Compile Include="Data\Tbl_Tag_To_Order_Mapping.cs" />
+    <Compile Include="Data\Tbl_Template.cs" />
+    <Compile Include="Data\Tbl_Template_To_Special_Offer_Mapping.cs" />
+    <Compile Include="Data\Tbl_Time_Stamp.cs" />
+    <Compile Include="Data\Tbl_User.cs" />
+    <Compile Include="Data\Tbl_User_Billing_Preference_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_Currency_Preferenc_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_Daily_ToTimeStamp_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_FileType_Preference_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_Input_To_Option_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_Input_to_Order_mapping.cs" />
+    <Compile Include="Data\Tbl_User_Input_To_User_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_Payment_Preference_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_Status.cs" />
+    <Compile Include="Data\Tbl_User_Status_Time_Stamp_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_Status_To_Questionnaire_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_To_Input_mapping.cs" />
+    <Compile Include="Data\Tbl_User_To_Level_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_To_Phone_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_To_Preference.cs" />
+    <Compile Include="Data\Tbl_User_To_Reminder.cs" />
+    <Compile Include="Data\Tbl_User_To_Role_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_To_Shift_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_To_Special_Offer_Mapping.cs" />
+    <Compile Include="Data\Tbl_User_To_User_Mapping.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADInternalNew.DAL\ADInternalNew.DAL.csproj">
+      <Project>{4ed98089-7d6d-4757-95ab-ced64b075b19}</Project>
+      <Name>ADInternalNew.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
