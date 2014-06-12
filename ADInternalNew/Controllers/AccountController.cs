@@ -13,6 +13,7 @@ namespace ADInternalNew.Controllers
 
         public ActionResult Index()
         {
+
             return View();
         }
 
