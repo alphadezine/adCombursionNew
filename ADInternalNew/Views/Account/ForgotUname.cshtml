@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "ForgotUname";
 }
 
 <!DOCTYPE html>
@@ -9,19 +9,19 @@
 <head>
     <!-- BEGIN META SECTION -->
     <meta charset="utf-8">
-    <title> Forgot password </title>
+    <title>Forgot Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="" name="description" />
     <meta content="themes-lab" name="author" />
     <link rel="shortcut icon" href="~/Content/img/favicon.png">
     <!-- END META SECTION -->
-
     <!-- BEGIN MANDATORY STYLE -->
     <link href="~/Content/css/icons/icons.min.css" rel="stylesheet">
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Content/css/plugins.min.css" rel="stylesheet">
     <link href="~/Content/css/style.min.css" rel="stylesheet">
+    <link href="#" rel="stylesheet" id="theme-color">
     <!-- END  MANDATORY STYLE -->
-
     <!-- BEGIN PAGE LEVEL STYLE -->
     <link href="~/Content/css/animate-custom.css" rel="stylesheet">
     <!-- END PAGE LEVEL STYLE -->
@@ -52,12 +52,12 @@
                         </div>
                         <!-- END ERROR BOX -->
                         <form action="#" method="get">
-                            <p>Enter your email address below and we'll send a special reset password link to your inbox.</p>
+                            <p>Enter your email address below and we'll send your Username to your inbox.</p>
                             <input type="email" placeholder="Email" class="input-field" required/>
                             <button type="submit" class="btn btn-login btn-reset">Reset password</button>
                         </form>
                         <div class="login-links">
-                            <a href="@Url.Action("Login","Account")">Already have an account?  <strong>Sign In</strong></a>
+                            <a href="@Url.Action("Login","Account")">Already have an account? <strong>Sign In</strong></a>
                             <br>
                             <a href="@Url.Action("SignUp","Account")"> Don't have an account? <strong>Sign Up</strong></a>
                         </div>
@@ -68,16 +68,16 @@
     </div>
     <!-- END PASSWORD BOX -->
     <!-- BEGIN MANDATORY SCRIPTS -->
-    <script src="~/Content/plugins/jquery-1.11.js"></script>
-    <script src="~/Content/plugins/jquery-migrate-1.2.1.js"></script>
-    <script src="~/Content/plugins/jquery-ui/jquery-ui-1.10.4.min.js"></script>
-    <script src="~/Content/plugins/jquery-mobile/jquery.mobile-1.4.2.js"></script>
-    <script src="~/Content/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="~/Content/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="~/~/Content/plugins/jquery-1.11.js"></script>
+    <script src="~/~/Content/plugins/jquery-migrate-1.2.1.js"></script>
+    <script src="~/~/Content/plugins/jquery-ui/jquery-ui-1.10.4.min.js"></script>
+    <script src="~/~/Content/plugins/jquery-mobile/jquery.mobile-1.4.2.js"></script>
+    <script src="~/~/Content/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/~/Content/plugins/jquery.cookie.min.js" type="text/javascript"></script>
     <!-- END MANDATORY SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="~/Content/plugins/backstretch/backstretch.min.js"></script>
-    <script src="~/Content/js/account.js"></script>
+    <script src="~/~/Content/plugins/backstretch/backstretch.min.js"></script>
+    <script src="~/~/Content/js/account.js"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 
