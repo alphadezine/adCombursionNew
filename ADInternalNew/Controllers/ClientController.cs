@@ -21,6 +21,26 @@ namespace ADInternalNew.Controllers
             return View();
         }
 
+        public ActionResult Notifications()
+        {
+            return View();
+        }
+
+        public ActionResult InProgress()
+        {
+            return View();
+        }
+
+        public ActionResult Completed()
+        {
+            return View();
+        }
+
+        public ActionResult DueAmt()
+        {
+            return View();
+        }
+
 
 
     }
