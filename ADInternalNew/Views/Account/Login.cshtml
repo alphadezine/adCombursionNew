@@ -11,10 +11,10 @@
     <meta charset="utf-8">
     <title> Alpha Dezine </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="" name="description" />
     <meta content="themes-lab" name="author" />
-    <link rel="shortcut icon" href="Content/img/favicon.png">
+    <link rel="shortcut icon" href="~/Content/img/favicon.png">
     <!-- END META SECTION -->
+
     <!-- BEGIN MANDATORY STYLE -->
     <link href="~/Content/css/icons/icons.min.css" rel="stylesheet">
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -47,15 +47,15 @@
                     <div class="login-form">
                         <!-- BEGIN ERROR BOX -->
                         <div class="alert alert-danger hide">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
                             <h4>Error!</h4>
                             Your Error Message goes here
                         </div>
                         <!-- END ERROR BOX -->
                         <form action="@Url.Action("Login","Account")" method="post">
-                            <input type="text" placeholder="Username" class="input-field form-control user" />
-                            <input type="password" placeholder="Password" class="input-field form-control password" />
-                            <button id="submit-form" class="btn btn-login ladda-button" data-style="expand-left"><span class="ladda-label">login</span></button>
+                            <input type="text" placeholder="Username or Email" class="input-field user" required />
+                            <input type="password" placeholder="Password" class="input-field password" required />
+                           <button type="submit" class="btn btn-login btn-reset">Login</button>
                         </form>
                         <div class="login-links">
                             <a href="@Url.Action("ForgotPwd","Account")">Forgot Password?</a> | <a href="@Url.Action("ForgotUname","Account")">Forgot Username?</a>
@@ -79,11 +79,11 @@
     <!-- END MANDATORY SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="~/Content/plugins/backstretch/backstretch.min.js"></script>
-    <script src="~/Content/plugins/bootstrap-loading/lada.min.js"></script>
+    @*<script src="~/Content/plugins/bootstrap-loading/lada.min.js"></script>*@
     <script src="~/Content/js/account.js"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 
-    <script>
+    @*<script>
         $(function () {
             $('#submit-form').click(function (e) {
                 e.preventDefault();
@@ -95,7 +95,7 @@
 
             });
         });
-    </script>
+    </script>*@
 </body>
 
 </html>
