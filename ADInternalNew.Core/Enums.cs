@@ -22,7 +22,7 @@ namespace ADInternalNew.Core
         }
         public enum Roles
         {
-            Admin=1,Client=2,CS=3,CSManager=4,Artist=5,ArtistManager=6,QC=7,QCManager=8
+            Admin=1,Client=2,CS=3,CSManager=4,Artist=5,ArtistManager=6,QC=7,QCManager=8,Company=9
         }
     }
 }
