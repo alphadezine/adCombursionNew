@@ -32,6 +32,10 @@
 
     <script src="~/Content/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
+    <!-- BEGIN MANDATORY SCRIPTS -->
+    <script src="~/Content/plugins/mandatoryJs.min.js"></script>
+    <!-- END MANDATORY SCRIPTS -->
+
 </head>
 
 @*<body data-page="dashboard">*@
@@ -480,11 +484,6 @@
     </nav>*@
     <!-- END CHAT MENU -->
 
-    <!-- BEGIN MANDATORY SCRIPTS -->
-    <script src="~/Content/plugins/mandatoryJs.min.js"></script>
-    <!-- END MANDATORY SCRIPTS -->
-
-
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     
     <!-- BEGIN SCRIPT FOR CKEDITOR -->
@@ -512,6 +511,7 @@
     <!-- END PAGE LEVEL SCRIPTS -->
 
     <script src="~/Content/js/application.js"></script>
+
 
     @RenderSection("script", false)
 </body>
