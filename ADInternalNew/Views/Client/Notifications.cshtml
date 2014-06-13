@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="table-responsive">
+  
+        <table id="myDataTablenotify" class="table table-striped table-hover table-responsive">
+           <thead class="no-bd">
+              <tr>
+                <th class="text-center"> <strong> You have # New Notifications </strong></th>
+              </tr>
+           </thead>
+           
+            <tbody class="no-bd-y"> 
+                <tr> 
+                    <td>Invoice for Order # has been generated. Click here.</td> 
+                </tr>
+                 <tr>   
+                     <td>Order # has been completed. Click here to view.</td>
+                </tr>
+                <tr>   
+                     <td>Revision request for Order # is being processed.</td>
+                </tr>
+            </tbody>
+
+         </table>
+        </div>
+        </div> 
+        </div>                           
+      </div> 
+  
+<script>
+    $(document).ready(function () {
+        $('#myDataTablenotify').dataTable({
+            bFilter: false,
+            bInfo: false,
+            "aLengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "bPaginate": false
+        });
+    });
+
+</script>
+   
