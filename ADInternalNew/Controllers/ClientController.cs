@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ADInternalNew.Models;
-using ADInternalNew.DAL;
+
 namespace ADInternalNew.Controllers
 {
     public class ClientController : Controller
@@ -45,9 +45,8 @@ namespace ADInternalNew.Controllers
         public JsonResult ClientList(string term)
         {
             ClientModel cm = new ClientModel();
-            return Json(cm.GetClients(term).Select(x=>new {x.User_Id,name=x.First_Name+" "+x.Last_Name}), JsonRequestBehavior.AllowGet);
+            return Json(cm.GetClients(term).Select(x => new { x.User_Id, name = x.First_Name + " " + x.Last_Name }), JsonRequestBehavior.AllowGet);
         }
-
 
     }
 }
