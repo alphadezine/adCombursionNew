@@ -30,7 +30,7 @@ namespace ADInternalNew.Core
         }
         public enum UserStatusAction
         {
-            NewUser = 1, Activated = 2, Deactivated = 3,EditedProfile=4 
+            NewUser = 1, Activated = 2, Deactivated = 3,EditedProfile=4  
         }
         public enum DailyLogStatus
         {
