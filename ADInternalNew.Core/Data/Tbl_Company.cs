@@ -19,13 +19,14 @@ namespace ADInternalNew.CORE.Data{
 				context = pcontext;
 			}
 		}
-		public int add(string Company_Name,string First_Contact_Name,int Internal_User_Id)
+		public int add(string Company_Name,string First_Contact_Name,int Internal_User_Id,string FaxNo)
 		{
 			try{
 				Company objCompany=new Company();
 				objCompany.Company_Name=Company_Name;
 				objCompany.First_Contact_Name=First_Contact_Name;
 				objCompany.Internal_User_Id=Internal_User_Id;
+                objCompany.FaxNo = FaxNo;
 				context.Companies.InsertOnSubmit(objCompany);
 				context.SubmitChanges();
 				return objCompany.User_Id;
@@ -35,7 +36,7 @@ namespace ADInternalNew.CORE.Data{
 				return 0;
 			}
 		}
-		public bool udpate(int User_Id,string Company_Name,string First_Contact_Name,int Internal_User_Id)
+        public bool udpate(int User_Id, string Company_Name, string First_Contact_Name, int Internal_User_Id, string FaxNo)
 		{
 			try{
 				Company objCompany = (from i in context.Companies where i.User_Id == User_Id select i).SingleOrDefault();
@@ -44,6 +45,7 @@ namespace ADInternalNew.CORE.Data{
 					objCompany.Company_Name=Company_Name;
 					objCompany.First_Contact_Name=First_Contact_Name;
 					objCompany.Internal_User_Id=Internal_User_Id;
+                    objCompany.FaxNo = FaxNo;
 					context.SubmitChanges();
 					return true;
 				}
