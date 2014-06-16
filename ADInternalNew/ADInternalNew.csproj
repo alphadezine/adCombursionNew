@@ -42,7 +42,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -109,12 +111,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClientModel.cs" />
+    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -3444,7 +3451,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -3675,6 +3681,19 @@
     <Content Include="Content\plugins\pickadate\translations\NAMING.md" />
     <Content Include="Content\plugins\range-datepicker\bower.json" />
     <Content Include="Content\plugins\range-datepicker\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADInternalNew.Core\ADInternalNew.Core.csproj">
+      <Project>{1da5f921-55f4-4dfc-a953-d5c4815e6b69}</Project>
+      <Name>ADInternalNew.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADInternalNew.DAL\ADInternalNew.DAL.csproj">
+      <Project>{4ed98089-7d6d-4757-95ab-ced64b075b19}</Project>
+      <Name>ADInternalNew.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ForgotUname.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
