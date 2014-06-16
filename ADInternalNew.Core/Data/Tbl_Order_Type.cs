@@ -19,12 +19,13 @@ namespace ADInternalNew.CORE.Data{
 				context = pcontext;
 			}
 		}
-		public int add(string Order_Type_Name,int Level_Id)
+		public int add(string Order_Type_Name,int Level_Id,int Order_Type_Parent_Id)
 		{
 			try{
 				Order_Type objOrder_Type=new Order_Type();
 				objOrder_Type.Order_Type_Name=Order_Type_Name;
 				objOrder_Type.Level_Id=Level_Id;
+                objOrder_Type.Order_Type_Parent_Id = Order_Type_Parent_Id;
 				context.Order_Types.InsertOnSubmit(objOrder_Type);
 				context.SubmitChanges();
 				return objOrder_Type.Order_Type_Id;
@@ -34,7 +35,7 @@ namespace ADInternalNew.CORE.Data{
 				return 0;
 			}
 		}
-		public bool udpate(int Order_Type_Id,string Order_Type_Name,int Level_Id)
+		public bool udpate(int Order_Type_Id,string Order_Type_Name,int Level_Id,int Order_Type_Parent_Id)
 		{
 			try{
 				Order_Type objOrder_Type = (from i in context.Order_Types where i.Order_Type_Id == Order_Type_Id select i).SingleOrDefault();
@@ -42,6 +43,7 @@ namespace ADInternalNew.CORE.Data{
 				{
 					objOrder_Type.Order_Type_Name=Order_Type_Name;
 					objOrder_Type.Level_Id=Level_Id;
+                    objOrder_Type.Order_Type_Parent_Id = Order_Type_Parent_Id;
 					context.SubmitChanges();
 					return true;
 				}
