@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+      <div class="col-md-12">
+      <div class="panel panel-default">
+    <div class="table-responsive"> 
+ <table id="myDataTableDue" class="table table-striped table-hover table-responsive">
+    <thead class="no-bd">
+      <tr>
+        <th>Order Name</th>
+        <th>Invoice Number</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+           
+    <tbody> 
+      <tr> 
+        <td>Creative T-shirt Design</td>
+        <td>1012AT</td>
+        <td>$24.7</td>
+      </tr>
+
+      <tr> 
+        <td>Digitizing</td>
+        <td>2564SQ</td>
+        <td>$45.2</td>
+      </tr>
+
+        <tr> 
+        <td>Mug Design</td>
+        <td>9764SQ</td>
+        <td>$100</td>
+      </tr>
+    </tbody>
+
+   </table>
+    </div>
+    </div>
+    </div>
+    </div>
+<script>
+    $(document).ready(function () {
+        $('#myDataTableDue').dataTable({ bFilter: false, bInfo: false, "bPaginate": false });
+    });
+
+</script>
+   
