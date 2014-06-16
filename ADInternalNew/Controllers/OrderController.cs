@@ -16,9 +16,5 @@ namespace ADInternalNew.Controllers
             return View();
         }
 
-        public ActionResult PlaceOrder()
-        {
-            return View();
-        }
     }
 }
