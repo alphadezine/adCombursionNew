@@ -24,17 +24,5 @@ namespace ADInternalNew.Core
         {
             Admin=1,Client=2,CS=3,CSManager=4,Artist=5,ArtistManager=6,QC=7,QCManager=8,Company=9
         }
-        public enum UserStatus
-        {
-            NewUser=1,Activated=2,Deactivated=3
-        }
-        public enum UserStatusAction
-        {
-            NewUser = 1, Activated = 2, Deactivated = 3,EditedProfile=4  
-        }
-        public enum DailyLogStatus
-        {
-            ShiftStart=1,ShiftEnd=2,LongBreakStart=3,LongBreakEnd=4,ShortBreakStart=5,ShortBreakEnd=6,BioBreakStart=7,BioBreakEnd=8,LogOff=9,LogBack=10
-        }
     }
 }

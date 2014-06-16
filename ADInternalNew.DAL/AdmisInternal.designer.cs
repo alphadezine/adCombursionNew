@@ -2154,6 +2154,8 @@ namespace ADInternalNew.DAL
 		
 		private System.Nullable<int> _Internal_User_Id;
 		
+		private string _FaxNo;
+		
 		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
@@ -2168,6 +2170,8 @@ namespace ADInternalNew.DAL
     partial void OnFirst_Contact_NameChanged();
     partial void OnInternal_User_IdChanging(System.Nullable<int> value);
     partial void OnInternal_User_IdChanged();
+    partial void OnFaxNoChanging(string value);
+    partial void OnFaxNoChanged();
     #endregion
 		
 		public Company()
@@ -2256,6 +2260,26 @@ namespace ADInternalNew.DAL
 					this._Internal_User_Id = value;
 					this.SendPropertyChanged("Internal_User_Id");
 					this.OnInternal_User_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FaxNo", DbType="VarChar(50)")]
+		public string FaxNo
+		{
+			get
+			{
+				return this._FaxNo;
+			}
+			set
+			{
+				if ((this._FaxNo != value))
+				{
+					this.OnFaxNoChanging(value);
+					this.SendPropertyChanging();
+					this._FaxNo = value;
+					this.SendPropertyChanged("FaxNo");
+					this.OnFaxNoChanged();
 				}
 			}
 		}
@@ -8386,6 +8410,8 @@ namespace ADInternalNew.DAL
 		
 		private System.Nullable<int> _Level_Id;
 		
+		private System.Nullable<int> _Order_Type_Parent_Id;
+		
 		private EntitySet<Order_Detail> _Order_Details;
 		
 		private EntitySet<Order_Type_To_File_Mapping> _Order_Type_To_File_Mappings;
@@ -8402,6 +8428,8 @@ namespace ADInternalNew.DAL
     partial void OnOrder_Type_NameChanged();
     partial void OnLevel_IdChanging(System.Nullable<int> value);
     partial void OnLevel_IdChanged();
+    partial void OnOrder_Type_Parent_IdChanging(System.Nullable<int> value);
+    partial void OnOrder_Type_Parent_IdChanged();
     #endregion
 		
 		public Order_Type()
@@ -8472,6 +8500,26 @@ namespace ADInternalNew.DAL
 					this._Level_Id = value;
 					this.SendPropertyChanged("Level_Id");
 					this.OnLevel_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Order_Type_Parent_Id", DbType="Int")]
+		public System.Nullable<int> Order_Type_Parent_Id
+		{
+			get
+			{
+				return this._Order_Type_Parent_Id;
+			}
+			set
+			{
+				if ((this._Order_Type_Parent_Id != value))
+				{
+					this.OnOrder_Type_Parent_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Order_Type_Parent_Id = value;
+					this.SendPropertyChanged("Order_Type_Parent_Id");
+					this.OnOrder_Type_Parent_IdChanged();
 				}
 			}
 		}
