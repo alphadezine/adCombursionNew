@@ -124,6 +124,7 @@
     <Compile Include="Data\Tbl_User_To_Shift_Mapping.cs" />
     <Compile Include="Data\Tbl_User_To_Special_Offer_Mapping.cs" />
     <Compile Include="Data\Tbl_User_To_User_Mapping.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
