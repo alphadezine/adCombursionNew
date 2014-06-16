@@ -1,0 +1,135 @@
+﻿@model  ADInternalNew.Models.OrderSearch
+@{
+    ViewBag.Title = "OrderSearchAll";
+    Layout = "~/Views/Shared/master.cshtml";
+}
+<link href="~/Content/plugins/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/plugins/datetimepicker/jquery.datetimepicker.js"></script>
+<style>
+    .bootomspace {
+        padding-bottom: 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>Order Search All</strong></h3>
+            </div>
+            <div class="panel-body bootomspace">
+                <div class="col-md-12" style="padding-bottom: 10px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 form-label">
+                            Order Name 
+                        </label>
+                        <div class="col-sm-6">
+                            @*<input type="text" class="form-control" id="txtkeyword" placeholder="Please type order name...">*@
+                            @Html.TextBoxFor(x => x.ordername, new { @id = "txtordername", @class = "form-control", @placeholder = "Please type order name..." })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 bootomspace">
+                    <div class="col-md-6 post-column-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 form-label">
+                                From 
+                            </label>
+                            <div class="col-sm-8">
+                                @*<input type="text" class="form-control" id="txtdatefrom" placeholder="From Date...">*@
+                                <span class="input-group-addon bg-white">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                @Html.TextBoxFor(x => x.fromdate, new { @id = "txtfromdate", @class = "form-control", @placeholder = "From Date..." })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 post-column-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 form-label">
+                                To 
+                            </label>
+                            <div class="col-sm-8">
+                                <span class="input-group-addon bg-white">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <input id="calendar" type="text" class="form-control" placeholder="Search a date...">
+                                @*<input type="text" class="form-control" id="txttofrom" placeholder="To Date...">*@
+
+                                @*@Html.TextBoxFor(x => x.todate, new { @id = "txttodate", @class = "form-control", @placeholder = "To Date..." })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="col-md-12 bootomspace">
+                    <div class="col-md-6 post-column-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 form-label">
+                                Status 
+                            </label>
+                            <div class="col-sm-8">
+                                @*<input type="text" class="form-control" id="txtstatus" placeholder="From Date...">*@
+                                @*@Html.DropDownListFor()*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 post-column-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 form-label">
+                                Order Type 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txtordertype" placeholder="To Date...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 bootomspace">
+                    <div class="col-md-6 post-column-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 form-label">
+                                Company 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txtcompany" placeholder="From Date...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 post-column-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 form-label">
+                                Client 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txtclient" placeholder="To Date...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 bootomspace">
+                    <div class="col-md-6 post-column-left">
+                        <div class="form-group">
+                            <label class="col-sm-4 form-label">
+                                Payment Status 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txtpaymentstatus" placeholder="From Date...">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12 bootomspace" style="text-align: right;">
+                    <button type="button" class="btn btn-success">Search</button>
+                    <button type="button" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
