@@ -63,6 +63,7 @@
       <Column Name="Company_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="First_Contact_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Internal_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FaxNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="User_Company" Member="User" ThisKey="Internal_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
@@ -359,6 +360,7 @@
       <Column Name="Order_Type_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Order_Type_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Level_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Order_Type_Parent_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Order_Type_Order_Detail" Member="Order_Details" ThisKey="Order_Type_Id" OtherKey="Order_Type_Id" Type="Order_Detail" />
       <Association Name="Order_Type_Order_Type_To_File_Mapping" Member="Order_Type_To_File_Mappings" ThisKey="Order_Type_Id" OtherKey="Order_Type_Id" Type="Order_Type_To_File_Mapping" />
       <Association Name="Level_Order_Type" Member="Level" ThisKey="Level_Id" OtherKey="Level_Id" Type="Level" IsForeignKey="true" />
